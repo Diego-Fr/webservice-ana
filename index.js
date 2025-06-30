@@ -4,6 +4,7 @@ const { default: axios } = require("axios")
 const rateLimit = require('axios-rate-limit');
 const moment = require('moment');
 const axios_queue = rateLimit(axios.create(), { maxRPS: 15 });
+var CronJob = require('cron').CronJob;
 
 const pidusage = require('pidusage');
 
@@ -26,6 +27,17 @@ const cs = new pgp.helpers.ColumnSet(
     ['station_prefix_id','date_hour','value','read_value', 'measurement_classification_type_id','transmission_type_id','information_origin'],
     {table: 'measurements'}
 );
+
+var job_default = new CronJob(
+    process.env.CRON_PATTERN,
+	function() {
+        start()
+	},
+	null,
+	true
+);
+
+console.log('Started');
 
 
 
@@ -272,4 +284,3 @@ const authenticate = async _ =>{
     })
 }
 
-start(0)
