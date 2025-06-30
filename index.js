@@ -48,6 +48,10 @@ console.log('Started');
 // }, 5000);
 
 const start = async () =>{
+
+    PROMISES = []
+    STATION_LAST_MEASUREMENT = {}
+
     await getANASibhStations()
     await tryAuthenticate()
     if(CURRENT_ANA_TOKEN && Object.keys(SIBH_STATIONS).length > 0){
