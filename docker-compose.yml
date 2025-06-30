@@ -1,0 +1,17 @@
+#version: '3.3'
+services:
+  web:
+    build:
+      context: ./
+    command: node index.js
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "128m"
+    environment:
+      NODE_ENV: production
+      DEBUG: nodejs-docker-express:*
+networks:
+  webservice-ana-network:
+    driver: bridge
