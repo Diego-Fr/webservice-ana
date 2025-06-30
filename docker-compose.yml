@@ -13,7 +13,7 @@ services:
       NODE_ENV: production
       DEBUG: nodejs-docker-express:*
 networks:
-  webservice-saisp-network:
+  webservice-ananode-network:
     driver: bridge
     ipam:
       config:
