@@ -174,7 +174,7 @@ const buildMeasurements = (station, list) =>{
             level     = sanatizeNumber(level)
             discharge = sanatizeNumber(discharge)
             // return ana_measurement
-            if((rainfall && station_type_id === '2') || (level && station_type_id === '1')){
+            if((rainfall != null && station_type_id === '2') || (level != null && station_type_id === '1')){
                 measurements.push({
                     station_prefix_id: station.id,
                     date_hour,
