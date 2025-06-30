@@ -162,7 +162,7 @@ const buildMeasurements = (station, list) =>{
             
             let date_hour = moment(ana_measurement["Data_Hora_Medicao"],'YYYY-MM-DD HH:mm')
                             
-            if(process.env.envioment === 'production'){
+            if(process.env.enviroment === 'production'){
                 date_hour.add(3, 'hours'); // vem local da API ANA
             }
 
