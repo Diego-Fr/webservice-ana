@@ -12,9 +12,11 @@ services:
     environment:
       NODE_ENV: production
       DEBUG: nodejs-docker-express:*
+    networks:
+      - webservice-ananode-network
 networks:
   webservice-ananode-network:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.66.0.0/16
+        - subnet: 172.120.0.0/16
