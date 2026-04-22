@@ -53,7 +53,18 @@ const start = async () =>{
     STATION_LAST_MEASUREMENT = {}
 
     await getANASibhStations()
-    await tryAuthenticate()
+
+    let times = 0
+    
+    while (times < 3 && !CURRENT_ANA_TOKEN) {
+        await tryAuthenticate()
+        times += 1
+        
+        if (CURRENT_ANA_TOKEN) break;
+
+        await new Promise(resolve => setTimeout(resolve, 10000)); // espera 10 segundos antes de tentar novamente
+    }
+
     if(CURRENT_ANA_TOKEN && Object.keys(SIBH_STATIONS).length > 0){
         console.log('Token e postos carregados com sucesso, buscando medições');
         
@@ -206,7 +217,8 @@ const tryAuthenticate = async _=>{
     } catch (e){
         CURRENT_ANA_TOKEN = ''
         console.log('Erro ao autenticar');
-        return
+
+        // return
     }
 }
 
