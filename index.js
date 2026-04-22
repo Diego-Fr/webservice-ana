@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { default: axios } = require("axios")
+const { default: axios } = require("./config/axios")
 
 const rateLimit = require('axios-rate-limit');
 const moment = require('moment');
