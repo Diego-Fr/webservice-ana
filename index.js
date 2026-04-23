@@ -56,6 +56,8 @@ const start = async () =>{
     await getANASibhStations()
 
     let times = 0
+
+    await tryAuthenticate()
     
     while (times < 3 && !CURRENT_ANA_TOKEN) {
         
@@ -220,7 +222,7 @@ const tryAuthenticate = async _=>{
         CURRENT_ANA_TOKEN = response.data.items.tokenautenticacao;
     } catch (e){
         CURRENT_ANA_TOKEN = ''
-        console.log('Erro ao autenticar');
+        console.log('Erro ao autenticar', e);
 
         // return
     }
