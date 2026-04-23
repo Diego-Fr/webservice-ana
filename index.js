@@ -51,18 +51,22 @@ const start = async () =>{
 
     PROMISES = []
     STATION_LAST_MEASUREMENT = {}
+    CURRENT_ANA_TOKEN = null
 
     await getANASibhStations()
 
     let times = 0
     
     while (times < 3 && !CURRENT_ANA_TOKEN) {
+        
         await tryAuthenticate()
+
         times += 1
         
         if (CURRENT_ANA_TOKEN) break;
 
         await new Promise(resolve => setTimeout(resolve, 10000)); // espera 10 segundos antes de tentar novamente
+        
     }
 
     if(CURRENT_ANA_TOKEN && Object.keys(SIBH_STATIONS).length > 0){
